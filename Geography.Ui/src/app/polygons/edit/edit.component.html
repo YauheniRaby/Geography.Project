@@ -1,0 +1,53 @@
+<div class="form-froup row">
+    <label class="col-sm-2 col-form-label">Employee</label> 
+    <div class="col-sm-10">
+        <select class="form-control" [(ngModel)]="demoSnapshot.sputnik">
+            <option *ngFor="let sputnik of sputnikList">{{sputnik}}</option>
+        </select>
+    </div>
+    <label class="col-sm-2 col-form-label">Date</label>
+    <div class="col-sm-10">
+        <input type="date" class="form-control"
+        [ngModel] ="demoSnapshot.dateSnapshot | date:'yyyy-MM-dd'" 
+        (input)="demoSnapshot.dateSnapshot=parseDate($event.target)"
+        max="{{dateToday | date:'yyyy-MM-dd'}}">
+    </div>
+    <label class="col-sm-2 col-form-label">Cloudiness</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="demoSnapshot.cloudiness" placeholder="Enter cloudiness (empty)">
+    </div>
+    <label class="col-sm-2 col-form-label">Coil</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="demoSnapshot.coil" placeholder="Enter coil">
+    </div>    
+    <label class="col-sm-12 col-form-label">Geography Points:</label>
+    <label class="col-sm-5 col-form-label text-center">lat:</label>
+    <label class="col-sm-1 col-form-label text-center"></label>
+    <label class="col-sm-5 col-form-label text-center">lan:</label>
+</div> 
+<div class="form-froup row" *ngFor="let dataItem of demoSnapshot.geography.points; index as i" >
+    <div class="col-sm-5">
+        <input type="text" class="form-control text-center" [(ngModel)]="dataItem[0]" placeholder="Enter lat">
+    </div>  
+    <button type="button" (click)="deleteClick(i)" class="btn btn-light mr-1 col-sm-1"  text-align:center>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+          </svg>   
+    </button>
+    <div class="col-sm-5">
+        <input type="text" class="form-control text-center" [(ngModel)]="dataItem[1]" placeholder="Enter lan">
+    </div> 
+            
+</div>
+<button type="button" (click)="addClick()" class="btn  btn-link mr-1 col-sm-11"  text-align:center>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+      </svg>    
+</button> 
+
+<br/>
+<button (click)="updateClick()" class="btn btn-dark">Save</button>
+
+
+
